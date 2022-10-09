@@ -1,0 +1,22 @@
+MODEL: simple-cnn
+SEED: 0
+BETA: 0.5
+DATASET: cifar10
+PARTITION: noniid-labeldir
+CKPT: 50
+SERVER:
+  ALGO: SCAFFOLD
+  CLIENTS: 5
+  SAMPLE: 1.0 #float number
+  COMMU_ROUND: 50
+PATH:
+  LOGDIR: ./delete_logs
+  DATADIR: ../data/
+USER:
+  ADV: False
+  EPOCHS: 3
+  BATCH_SIZE: 64
+  OPTIMIZER: SGD
+  LR: 0.01
+  MOMENTUM: 0.9
+  WEIGHT_DECAY: 0.000001

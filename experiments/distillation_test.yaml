@@ -1,0 +1,27 @@
+MODEL: simple-cnn
+SEED: 33
+BETA: 0.1
+DATASET: cifar10
+PARTITION: noniid-labeldir
+CKPT: 50
+HELP: True
+SERVER:
+  CLIENTS: 5
+  SAMPLE: 1.0 #float number
+  ALGO: FedAvg
+  COMMU_ROUND: 150
+  HELP_ROUND: 1
+  LR: 0.0001
+PATH:
+  LOGDIR: "./test_logs/"
+  DATADIR: ../data/
+  DISTILLDATA: ../data/distillation_data
+USER:
+  HELPERS: 2
+  ADV: True
+  EPOCHS: 1
+  BATCH_SIZE: 64
+  OPTIMIZER: SGD
+  LR: 0.01
+  MOMENTUM: 0.9
+  WEIGHT_DECAY: 0.00001

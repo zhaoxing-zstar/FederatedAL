@@ -1,0 +1,11 @@
+scipy
+yacs
+sklearn
+torch
+torchvision
+torchaudio
+tensorboard
+numpy
+torchattacks
+tqdm
+nltk

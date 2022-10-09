@@ -1,0 +1,13 @@
+MODEL: simple-cnn
+DATASET: cifar10
+PARTITION: homo
+CKPT: 100
+USER:
+  ADV: False
+  EPOCHS: 5
+  BATCH_SIZE: 64
+  LR: 0.01
+SERVER:
+  CLIENTS: 100
+  SAMPLE: 0.1 #float number
+  COMMU_ROUND: 500

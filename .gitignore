@@ -1,0 +1,4 @@
+logs/
+runs/
+test_logs/
+**/__pycache__

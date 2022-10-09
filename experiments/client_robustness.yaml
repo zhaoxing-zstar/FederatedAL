@@ -1,0 +1,22 @@
+MODEL: simple-cnn
+SEED: 0
+BETA: 0.5
+DATASET: cifar10
+PARTITION: noniid-labeldir
+CKPT: 50
+SERVER:
+  CLIENTS: 5
+  SAMPLE: 1.0 #float number
+  ALGO: SCAFFOLD
+  COMMU_ROUND: 100
+PATH:
+  LOGDIR: "./test_logs/"
+  DATADIR: ../data/
+USER:
+  ADV: True
+  EPOCHS: 5
+  BATCH_SIZE: 64
+  OPTIMIZER: SGD
+  LR: 0.01
+  MOMENTUM: 0.9
+  WEIGHT_DECAY: 0.00001
