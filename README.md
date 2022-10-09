@@ -147,11 +147,11 @@ python3 torchttacks_FAT.py -b 64 -d cifar10 -m simple-cnn -s 2022 --model-path /
 * [Awesome Federated Machine Learning](https://github.com/innovation-cat/Awesome-Federated-Machine-Learning)
 
 # Reference
-[1] C. Chen, Y. Liu, X. Ma, and L. Lyu, “CalFAT: Calibrated Federated Adversarial Training with Label Skewness.” arXiv, May 30, 2022. doi: 10.48550/arXiv.2205.14926.
-[2] G. Zizzo, A. Rawat, M. Sinn, and B. Buesser, “FAT: Federated Adversarial Training.” arXiv, Dec. 03, 2020. doi: 10.48550/arXiv.2012.01791.
-[3] Q. Li, Y. Diao, Q. Chen, and B. He, “Federated Learning on Non-IID Data Silos: An Experimental Study.” arXiv, Oct. 28, 2021. Accessed: Jul. 09, 2022. [Online]. Available: http://arxiv.org/abs/2102.02079
-[4] T. Lin, L. Kong, S. U. Stich, and M. Jaggi, “Ensemble Distillation for Robust Model Fusion in Federated Learning.” arXiv, Mar. 27, 2021. doi: 10.48550/arXiv.2006.07242.
-[5] H. Zhang, Y. Yu, J. Jiao, E. P. Xing, L. E. Ghaoui, and M. I. Jordan, “Theoretically Principled Trade-off between Robustness and Accuracy.” arXiv, Jun. 24, 2019. Accessed: Jun. 20, 2022. [Online]. Available: http://arxiv.org/abs/1901.08573
+[1] C. Chen, Y. Liu, X. Ma, and L. Lyu, “CalFAT: Calibrated Federated Adversarial Training with Label Skewness.” arXiv, May 30, 2022. doi: 10.48550/arXiv.2205.14926.  
+[2] G. Zizzo, A. Rawat, M. Sinn, and B. Buesser, “FAT: Federated Adversarial Training.” arXiv, Dec. 03, 2020. doi: 10.48550/arXiv.2012.01791.  
+[3] Q. Li, Y. Diao, Q. Chen, and B. He, “Federated Learning on Non-IID Data Silos: An Experimental Study.” arXiv, Oct. 28, 2021. Accessed: Jul. 09, 2022. [Online]. Available: http://arxiv.org/abs/2102.02079  
+[4] T. Lin, L. Kong, S. U. Stich, and M. Jaggi, “Ensemble Distillation for Robust Model Fusion in Federated Learning.” arXiv, Mar. 27, 2021. doi: 10.48550/arXiv.2006.07242.  
+[5] H. Zhang, Y. Yu, J. Jiao, E. P. Xing, L. E. Ghaoui, and M. I. Jordan, “Theoretically Principled Trade-off between Robustness and Accuracy.” arXiv, Jun. 24, 2019. Accessed: Jun. 20, 2022. [Online]. Available: http://arxiv.org/abs/1901.08573  
 
 
 
