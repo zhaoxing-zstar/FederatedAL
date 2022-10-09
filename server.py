@@ -323,52 +323,6 @@ class Server:
         elif optimizer == 'SGD':
             return optim.SGD(self.global_net.parameters(), lr=self.distill_learning_rate, momentum=self.momentum)
 
-    # def distill(self, selected, epochs, num_classes):
-    #     # choose the global distillation epochs and number of classes
-    #     print("Distilling global model")
-    #     self.global_net.train()
-
-    #     for epoch in range(epochs):
-    #         epoch_loss = []
-    #         for data, target in self.distill_loader:
-    #             # target won't be used in distillation process
-    #             data = data.to(self.device)
-    #             teacher_logits = torch.zeros([data.shape[0], num_classes],
-    #                                          device=self.device)
-    #             for usr in selected:
-    #                 self.users[usr].net.to(self.device)
-    #                 y_c = self.users[usr].predict_logit(data)
-    #                 teacher_logits += (y_c/len(selected)).detach()
-    #             # loss = rslad_loss(self.global_net,
-    #             #                   teacher_logits,
-    #             #                   data,
-    #             #                   self.optimizer,
-    #             #                   step_size=2/255,
-    #             #                   epsilon=8/255,
-    #             #                   perturb_steps=10,
-    #             #                   alpha=5.0/6.0)
-
-    #             # loss = iad_loss(self.global_net,
-    #             #                 teacher_logits,
-    #             #                 data,
-    #             #                 self.optimizer,
-    #             #                 step_size=2/255,
-    #             #                 epsilon=8/255,
-    #             #                 perturb_steps=10,
-    #             #                 alpha=0.8)
-    #             teacher_logits = nn.Softmax(1)(teacher_logits)
-    #             y_ = nn.LogSoftmax(1)(self.global_net(data))
-    #             self.optimizer.zero_grad()
-    #             loss = torch.nn.KLDivLoss(reduction="batchmean")(y_, teacher_logits.detach())
-    #             loss.backward()
-    #             self.optimizer.step()
-    #             epoch_loss.append(loss.item())
-    #         epoch_loss = sum(epoch_loss) / len(epoch_loss)
-    #         logger.info(f"Distillation Epoch: {epoch} Loss: {epoch_loss}")
-    #     # update self.current_weights after distillation
-    #     self.current_weights = self.global_net.state_dict()
-
-    
     def distill(self, selected, epochs, num_classes):
         # choose the global distillation epochs and number of classes
         print("Distilling global model")
@@ -379,19 +333,17 @@ class Server:
             for data, target in self.distill_loader:
                 # target won't be used in distillation process
                 data = data.to(self.device)
-
-                # generate pseudo labels for unlabeled data
-                y_ = self.global_net(data).max(1)[1]
+                teacher_logits = torch.zeros([data.shape[0], num_classes],
+                                             device=self.device)
+                for usr in selected:
+                    self.users[usr].net.to(self.device)
+                    y_c = self.users[usr].predict_logit(data)
+                    teacher_logits += (y_c/len(selected)).detach()
+                teacher_logits = nn.Softmax(1)(teacher_logits)
+                y_ = nn.LogSoftmax(1)(self.global_net(data))
                 self.optimizer.zero_grad()
-                loss = trades_loss(self.global_net,
-                                    data,
-                                    y_,
-                                    self.optimizer,
-                                    step_size=2/255,
-                                    epsilon=8/255,
-                                    perturb_steps=10,
-                                    beta=1.0,
-                                    distance='l_inf')
+                loss = torch.nn.KLDivLoss(reduction="batchmean")(
+                    y_, teacher_logits.detach())
                 loss.backward()
                 self.optimizer.step()
                 epoch_loss.append(loss.item())

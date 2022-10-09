@@ -71,36 +71,6 @@ class User:
         # weight_mean = np.mean(weight_lst)
         # weight_lst = [(weight_mean/weight_lst[i])**(1/4) if weight_lst[i]<weight_mean else (weight_mean/weight_lst[i])**(1/2) for i in range(len(weight_lst))]
         self.pi_weight = torch.cuda.FloatTensor(weight_lst)
-<<<<<<< HEAD
-=======
-
-    # def local_train_fedavg(self, global_net):
-    #     for epoch in range(self.epochs):
-    #         epoch_loss = []
-    #         for data, target in (self.train_loader):
-    #             data, target = data.to(self.device), target.to(self.device)
-    #             # if self.adversarial_training:
-    #             #     data = self.mix_adversarial(data, target)
-    #             # net_out = self.net(data)
-    #             # loss = self.criterion(net_out, target)
-    #             loss = calibrated_loss(self.net,
-    #                                    data,
-    #                                    target,
-    #                                    self.optimizer,
-    #                                    self.pi_weight,
-    #                                    step_size=2/255,
-    #                                    epsilon=8/255,
-    #                                    perturb_steps=10,
-    #                                    beta=1.0,
-    #                                    distance='l_inf')
-    #             self.optimizer.zero_grad()
-    #             loss.backward()
-    #             self.optimizer.step()
-    #             epoch_loss.append(loss.item())
-
-    #         epoch_loss = sum(epoch_loss) / len(epoch_loss)
-    #         logger.info(f'Epoch: {epoch} Loss: {epoch_loss}')
->>>>>>> 28f221242897b67bcbce7ef764cbb7f2046f1945
 
     def local_train_fedavg(self, global_net):
         for epoch in range(self.epochs):
@@ -108,33 +78,13 @@ class User:
             for data, target in (self.train_loader):
                 data, target = data.to(self.device), target.to(self.device)
                 # if self.adversarial_training:
-<<<<<<< HEAD
                 #     data = self.mix_adversarial(data, target)
                 # net_out = self.net(data)
                 # loss = self.criterion(net_out, target)
-                loss = calibrated_global(self.net,
-=======
-                #     adv_data = self.mix_adversarial(data, target)
-                if self.toHelp:
-                    loss_natural, loss_robust, loss_commute = trades_global(self.net,
-                                                                            global_net,
-                                                                            data,
-                                                                            target,
-                                                                            self.optimizer,
-                                                                            step_size=2/255,
-                                                                            epsilon=8/255,
-                                                                            perturb_steps=10,
-                                                                            beta=0.0,
-                                                                            mu=1.0,
-                                                                            distance='l_inf')
-                else:
-                    # net_out = self.net(adv_data)
-                    loss = trades_loss(self.net,
->>>>>>> 28f221242897b67bcbce7ef764cbb7f2046f1945
+                loss = calibrated_loss(self.net,
                                        data,
                                        target,
                                        self.optimizer,
-                                       global_net,
                                        self.pi_weight,
                                        step_size=2/255,
                                        epsilon=8/255,

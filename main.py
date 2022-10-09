@@ -69,8 +69,8 @@ def federated_train(cfg, logger):
     TEST_STEP = 1
     for cur_round in range(cfg.SERVER.COMMU_ROUND):
         logger.info("In communication round:"+str(cur_round))
-        # if cur_round % cfg.SERVER.HELP_ROUND == 0 and cfg.HELP:
-        #     the_server.assign_helper_clients(cfg.USER.HELPERS)
+        if cur_round % cfg.SERVER.HELP_ROUND == 0 and cfg.HELP:
+            the_server.assign_helper_clients(cfg.USER.HELPERS)
 
         selected = np.random.choice(cfg.SERVER.CLIENTS, int(
             cfg.SERVER.CLIENTS*cfg.SERVER.SAMPLE), replace=False)
